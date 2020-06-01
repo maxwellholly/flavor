@@ -94,6 +94,7 @@ class MealPlans extends Component {
                         response.items[i].healthScore = details.healthScore;
                         response.items[i].servings = details.servings;
                         response.items[i].readyInMinutes = details.readyInMinutes;
+                        response.items[i].sourceURL = details.sourceUrl;
                     })
                 }
                 setTimeout(function() {

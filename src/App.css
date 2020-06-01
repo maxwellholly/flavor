@@ -104,7 +104,7 @@ button {
   opacity: 1;
 }
 
-.mainNavB {
+.navB {
   font-family: kopius, serif;
   font-weight: 400;
   font-style: italic;
@@ -117,12 +117,12 @@ button {
   margin: 0;
 }
 
-mainNavB:hover {
+.navB:hover {
   opacity: 1;
   border-bottom: black solid 1px;
 }
 
-.mainNavB:last-of-type {
+.mainNav:last-of-type {
   margin-left: 75px;
 }
 

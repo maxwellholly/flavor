@@ -41,11 +41,11 @@ class App extends Component{
                     <Router className="main-content">
                         <Nav/>
                         <div className="desNav">
-                            <NavLink to='/MealPlans'>
-                                <button className="mainNavB">Meal Plans</button>
+                            <NavLink className="mainNav" to='/MealPlans'>
+                                <button className="navB">Meal Plans</button>
                             </NavLink>
-                            <NavLink  to='/RecipeSearch'>
-                                <button className="mainNavB">Recipe Search</button>
+                            <NavLink  className="mainNav" to='/RecipeSearch'>
+                                <button className="navB">Recipe Search</button>
                             </NavLink>
                         </div>
                         <Routes
