@@ -37,7 +37,7 @@ class RecipeSearch extends Component {
         }
     }
 
-    handleGetMeals = (diet, exclude) => {
+    handleGetMeals = (calories, diet, exclude, name) => {
         this.setState({requested: true, loaded: false, showForm: true});
         let api = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?";
 
@@ -50,7 +50,6 @@ class RecipeSearch extends Component {
         }
 
         this.props.getMeals(api, function(response){
-            console.log(response)
             let api;
             for(let i = 0; i < response.results.length; i++) {
                 api = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" + response.results[i].id + "/information";

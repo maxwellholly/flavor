@@ -4,7 +4,6 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 const Logo = props => {
     const classes = useStyles();
-    const theme = useTheme();
     return (
         <div className={classes.container}>
             <img className={classes.flavor} src={flavorgarlic} alt="logo"/>
