@@ -91,6 +91,7 @@ button {
 }
 
 .durationB {
+  margin-top: 0 !important;
   background: none;
   opacity: .5;
 }

@@ -8,7 +8,7 @@ class RecipeSearch extends Component {
         this.styles = {
             pageTitle: {
                 fontSize: '1.5rem',
-                marginTop: '100px',
+                marginTop: '0',
                 marginBottom: '30px',
                 textAlign: 'center'
             },

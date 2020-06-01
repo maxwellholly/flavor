@@ -7,7 +7,7 @@ class MealPlans extends Component {
         super(props);
         this.styles = {
             pageTitle: {
-                fontSize: '1.75rem',
+                fontSize: '1.5rem',
                 marginTop: '25px',
                 marginBottom: '30px',
                 textAlign: 'center'
@@ -138,7 +138,7 @@ class MealPlans extends Component {
                 <div style={this.styles.buttonC}>
                     <button className="durationB active" style={this.styles.plan} onClick={function(event){
                         if(document.getElementsByClassName("active")) {
-                            let actives = document.getElementsByClassName("active");
+                            let actives = document.getElementsByClassName("durationB");
                             for(let i = 0; i < actives.length; i++) {
                                 actives[i].classList.remove("active");
                             }
@@ -151,7 +151,7 @@ class MealPlans extends Component {
                     }.bind(this)}>Day</button>
                     <button className="durationB" style={this.styles.plan} onClick={function(event){
                         if(document.getElementsByClassName("active")) {
-                            let actives = document.getElementsByClassName("active");
+                            let actives = document.getElementsByClassName("durationB");
                             for(let i = 0; i < actives.length; i++) {
                                 actives[i].classList.remove("active");
                             }

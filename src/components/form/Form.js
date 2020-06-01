@@ -13,7 +13,10 @@ class Form extends Component {
                 fontSize: "1rem",
                 backgroundColor: "rgba(255,255,255,.4)",
                 borderRadius: "20px",
-                padding: "50px"
+                padding: "50px",
+                width: "50%",
+                marginLeft: "auto",
+                marginRight: "auto"
             },
             mainLabel: {
                 fontSize: "1.25rem"
