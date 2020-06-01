@@ -8,12 +8,6 @@ class App extends Component{
     constructor(props) {
         super(props);
         this.styles = {
-            navigators: {
-
-            },
-            navigatorsC: {
-                marginTop: "200px"
-            }
         }
     }
     //Function to fetch data from API and return recipes as JSON

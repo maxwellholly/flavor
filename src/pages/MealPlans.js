@@ -164,7 +164,7 @@ class MealPlans extends Component {
                 </div>
                 <h2 style={this.styles.pageTitle}>Meal Planner</h2>
                 <button className="formToggle" onClick={this.toggleForm} hidden={!this.state.showForm}>Show Form</button>
-                <Form formType="Generate Meal Plan" handleGetMeals={this.handleGetMeals} name={this.state.duration} hidden={this.state.showForm}/>
+                <Form formType="Generate" handleGetMeals={this.handleGetMeals} name={this.state.duration} hidden={this.state.showForm}/>
                 {this.state.loaded ?
                             <div style={this.styles.recipes}>
                                 {recipeList}

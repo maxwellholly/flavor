@@ -5,7 +5,29 @@ class Form extends Component {
         super(props);
         this.styles = {
             form: {
-                marginBottom: "50px"
+                marginBottom: "50px",
+                fontFamily: "kopius, serif",
+                fontWeight: "400",
+                fontStyle: "italic",
+                color: "#34303e",
+                fontSize: "1rem",
+                backgroundColor: "rgba(255,255,255,.4)",
+                borderRadius: "20px",
+                padding: "50px"
+            },
+            mainLabel: {
+                fontSize: "1.25rem"
+            },
+            sections: {
+                marginBottom: "20px"
+            },
+            button: {
+                backgroundColor: "#F1E7A8",
+                border: "4px white solid",
+                color: "#34303e",
+                height: "50px",
+                width: "200px",
+                borderRadius: "10px"
             }
         };
         this.state = {
@@ -21,16 +43,16 @@ class Form extends Component {
             <form style={this.styles.form} onSubmit={function(event){
                 event.preventDefault();
                 this.props.handleGetMeals(this.state.calories, this.state.diet, this.state.exclude, this.props.name)}.bind(this)} name={this.props.name} hidden={this.props.hidden}>
-                <div style={styles.inputC} hidden={this.props.hide}>
-                <label htmlFor="calories">Target Daily Calories </label>
-                <input type="number" min="1" id="calories" onChange={function(event){
+                <div hidden={this.props.hide} style={this.styles.sections}>
+                <label style={this.styles.mainLabel} htmlFor="calories">Target Daily Calories </label>
+                <input className="inputNumText" type="number" min="1" id="calories" onChange={function(event){
                     this.setState({
                         calories: event.target.value
                     })
                 }.bind(this)}/>
                 </div>
-                <div style={styles.inputC}>
-                <label htmlFor="diet">Diet </label><br/>
+                <div style={this.styles.sections}>
+                <label style={this.styles.mainLabel} htmlFor="diet">Diet </label>
                 <input type="radio" id="glutenFree" name="diet" value="gluten free" onChange={function(event){
                     if (event.target.checked) {
                         this.setState({
@@ -102,16 +124,16 @@ class Form extends Component {
                                                     }.bind(this)}/>
                                                         <label htmlFor="whole">Whole30</label><br/>
                 </div>
-                <div style={styles.inputC}>
-                <label htmlFor="exclude">Leave Out </label><br/>
-                <input type="text" id="exclude" placeholder="Peanuts, Anchovies..." onChange={function(event){
+                <div style={this.styles.sections}>
+                <label style={this.styles.mainLabel} htmlFor="exclude">Leave Out </label>
+                <input className="inputNumText" type="text" id="exclude" placeholder="Peanuts, Anchovies..." onChange={function(event){
                     this.setState({
                         exclude: event.target.value
                     })
                 }.bind(this)}/>
                 </div>
 
-                <button type="submit">{this.props.formType}</button>
+                <button style={this.styles.button} type="submit">{this.props.formType}</button>
             </form>
         )
     }

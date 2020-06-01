@@ -94,7 +94,7 @@ class RecipeSearch extends Component {
                 <h2 style={this.styles.pageTitle}>Recipe Search</h2>
                 <h3>(all inputs are optional)</h3>
 
-                <Form formType="Get Recipes" handleGetMeals={this.handleGetMeals} name={this.state.duration} hide={true} hidden={this.state.showForm}/>
+                <Form formType="Search" handleGetMeals={this.handleGetMeals} name={this.state.duration} hide={true} hidden={this.state.showForm}/>
                 <button className="formToggle" onClick={this.toggleForm} hidden={!this.state.showForm}>Show Form</button>
                 {this.state.loaded ?
                     <div style={this.styles.recipes}>
