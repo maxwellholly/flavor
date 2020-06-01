@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/flavor/static/css/main.0f524655.chunk.css",
-    "main.js": "/flavor/static/js/main.22075680.chunk.js",
-    "main.js.map": "/flavor/static/js/main.22075680.chunk.js.map",
+    "main.js": "/flavor/static/js/main.7b7f129b.chunk.js",
+    "main.js.map": "/flavor/static/js/main.7b7f129b.chunk.js.map",
     "runtime-main.js": "/flavor/static/js/runtime-main.163c0dd6.js",
     "runtime-main.js.map": "/flavor/static/js/runtime-main.163c0dd6.js.map",
     "static/js/2.e1ea8343.chunk.js": "/flavor/static/js/2.e1ea8343.chunk.js",
     "static/js/2.e1ea8343.chunk.js.map": "/flavor/static/js/2.e1ea8343.chunk.js.map",
     "index.html": "/flavor/index.html",
-    "precache-manifest.7a63731df3fb510c139902674d441d07.js": "/flavor/precache-manifest.7a63731df3fb510c139902674d441d07.js",
+    "precache-manifest.217c3851f3309e3b9c52a261cb6d445f.js": "/flavor/precache-manifest.217c3851f3309e3b9c52a261cb6d445f.js",
     "service-worker.js": "/flavor/service-worker.js",
     "static/css/main.0f524655.chunk.css.map": "/flavor/static/css/main.0f524655.chunk.css.map",
     "static/js/2.e1ea8343.chunk.js.LICENSE.txt": "/flavor/static/js/2.e1ea8343.chunk.js.LICENSE.txt",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.163c0dd6.js",
     "static/js/2.e1ea8343.chunk.js",
     "static/css/main.0f524655.chunk.css",
-    "static/js/main.22075680.chunk.js"
+    "static/js/main.7b7f129b.chunk.js"
   ]
 }
