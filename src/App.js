@@ -42,7 +42,7 @@ class App extends Component{
                         <Nav/>
                         <div className="desNav">
                             <NavLink className="mainNav" to='/MealPlans'>
-                                <button className="navB">Meal Plans</button>
+                                <button className="navB">MealPlans</button>
                             </NavLink>
                             <NavLink  className="mainNav" to='/RecipeSearch'>
                                 <button className="navB">Recipe Search</button>
