@@ -99,6 +99,7 @@ button {
 .durationB:last-of-type {
   margin-left: 2em;
 }
+
 .durationB:hover {
   border-bottom: black solid 5px;
   cursor: pointer;
