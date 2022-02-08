@@ -20,12 +20,15 @@ class MealPlans extends Component {
                 position: 'relative'
             },
             recipes: {
-                width: '100%',
+                width: 'auto',
                 height: '100%',
                 display: 'flex',
-                flexFlow: 'row',
                 flexWrap: 'wrap',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
+                marginRight: "auto",
+                marginLeft: "auto",
+                justifyContent: "center",
+                gap: "10px"
             },
             plan: {
                 border: "none",
@@ -43,7 +46,6 @@ class MealPlans extends Component {
             }
         };
         this.state = {
-            duration: 'day',
             recipes: [],
             nutrition: [],
             requested: false,
@@ -51,9 +53,9 @@ class MealPlans extends Component {
         }
     }
 
-    handleGetMeals = (calories, diet, exclude, name) => {
+    handleGetMeals = (calories, diet, exclude, duration) => {
         this.setState({requested: true, loaded: false, showForm: true});
-        let api = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/mealplans/generate?timeFrame=" + name;
+        let api = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/mealplans/generate?timeFrame=" + duration;
 
         if(calories.trim() !== "") {
             api = api + "&targetCalories=" + calories;
@@ -104,7 +106,7 @@ class MealPlans extends Component {
             } else {
 
             }
-        }.bind(this));
+        }.bind(this)); 
     };
 
     toggleForm = () => {
@@ -135,44 +137,14 @@ class MealPlans extends Component {
         });
         return (
             <div style={this.styles.container}>
-                <div style={this.styles.buttonC}>
-                    <button className="durationB active" style={this.styles.plan} onClick={function(event){
-                        if(document.getElementsByClassName("active")) {
-                            let actives = document.getElementsByClassName("durationB");
-                            for(let i = 0; i < actives.length; i++) {
-                                actives[i].classList.remove("active");
-                            }
-                        }
-                        event.target.classList.add("active");
-                        this.setState({
-                            duration: "day",
-                            showForm: false
-                        })
-                    }.bind(this)}>Day</button>
-                    <button className="durationB" style={this.styles.plan} onClick={function(event){
-                        if(document.getElementsByClassName("active")) {
-                            let actives = document.getElementsByClassName("durationB");
-                            for(let i = 0; i < actives.length; i++) {
-                                actives[i].classList.remove("active");
-                            }
-                        }
-                        event.target.classList.add("active");
-                        this.setState({
-                            duration: "week",
-                            showForm: false
-                        })
-                    }.bind(this)}>Week</button>
-                </div>
-                <h2 style={this.styles.pageTitle}>Meal Planner</h2>
+                <Form className="mealPlans" mealPlans={true} formType="Generate" handleGetMeals={this.handleGetMeals} hidden={this.state.showForm}/>
                 <button className="formToggle" onClick={this.toggleForm} hidden={!this.state.showForm}>Show Form</button>
-                <Form formType="Generate" handleGetMeals={this.handleGetMeals} name={this.state.duration} hidden={this.state.showForm}/>
                 {this.state.loaded ?
                             <div style={this.styles.recipes}>
                                 {recipeList}
                             </div>
                             : this.state.requested ?
                             <div>
-                                <h3>We're fetching delicious recipes for you!</h3>
                                 <div>
                                     <img src="https://media.giphy.com/media/YoKaNSoTHog8Y3550r/giphy.gif"/>
                                 </div>

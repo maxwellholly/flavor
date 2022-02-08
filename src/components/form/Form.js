@@ -1,7 +1,8 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
+import { NavLink } from 'react-router-dom';
 
 class Form extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.styles = {
             form: {
@@ -11,26 +12,30 @@ class Form extends Component {
                 fontStyle: "italic",
                 color: "#34303e",
                 fontSize: "1rem",
-                backgroundColor: "rgba(255,255,255,.4)",
-                borderRadius: "20px",
                 padding: "50px",
-                width: "50%",
                 marginLeft: "auto",
-                marginRight: "auto"
+                marginRight: "auto",
+                borderRadius: "5px"
             },
             mainLabel: {
                 fontSize: "1.25rem"
             },
             sections: {
-                marginBottom: "20px"
+                width: '100%',
+                height: 'auto',
+                display: 'block',
+                marginTop: "20px",
+                marginRight: "auto",
+                marginLeft: "auto"
             },
             button: {
-                backgroundColor: "#F1E7A8",
-                border: "4px white solid",
-                color: "#34303e",
-                height: "50px",
+                backgroundColor: "black",
+                color: "white",
+                height: "40px",
                 width: "200px",
-                borderRadius: "10px"
+                border: "none",
+                borderRadius: "20px",
+                marginTop: "20px"
             }
         };
         this.state = {
@@ -38,113 +43,194 @@ class Form extends Component {
             diet: '',
             exclude: '',
             recipes: [],
-            loaded: false
+            loaded: false,
+            showForm: true,
+            duration: "day",
+            mealPlans: this.props.mealPlans
         }
     }
-    render () {
+    render() {
         return (
-            <form style={this.styles.form} onSubmit={function(event){
-                event.preventDefault();
-                this.props.handleGetMeals(this.state.calories, this.state.diet, this.state.exclude, this.props.name)}.bind(this)} name={this.props.name} hidden={this.props.hidden}>
-                <div hidden={this.props.hide} style={this.styles.sections}>
-                <label style={this.styles.mainLabel} htmlFor="calories">Target Daily Calories </label>
-                <input className="inputNumText" type="number" min="1" id="calories" onChange={function(event){
-                    this.setState({
-                        calories: event.target.value
-                    })
-                }.bind(this)}/>
+            <div>
+                <div className="desNav">
+                    <NavLink className="mainNav" to='/MealPlans'>
+                        <button className="navB plans">Meal Plans</button>
+                    </NavLink>
+                    <NavLink className="mainNav" to='/RecipeSearch'>
+                        <button className="navB search">Search</button>
+                    </NavLink>
                 </div>
-                <div style={this.styles.sections}>
-                <label style={this.styles.mainLabel} htmlFor="diet">Diet </label>
-                <input type="radio" id="glutenFree" name="diet" value="gluten free" onChange={function(event){
-                    if (event.target.checked) {
-                        this.setState({
-                        diet: event.target.value
-                    })}
-                }.bind(this)}/>
-                    <label htmlFor="glutenFree">Gluten Free</label><br/>
-                    <input type="radio" id="vegetarian" name="diet" value="vegetarian" onChange={function(event){
-                        if (event.target.checked) {
-                            this.setState({
-                                diet: event.target.value
-                            })}
-                    }.bind(this)}/>
-                        <label htmlFor="vegetarian">Vegetarian</label><br/>
-                        <input type="radio" id="ketogenic" name="diet" value="ketogenic" onChange={function(event){
-                            if (event.target.checked) {
+                <form className={this.props.className} style={this.styles.form} onSubmit={function (event) {
+                    event.preventDefault();
+                    this.props.handleGetMeals(this.state.calories, this.state.diet, this.state.exclude, this.state.duration)
+                }.bind(this)} duration={this.state.duration} hidden={this.props.hidden}>
+                    {this.state.mealPlans ? <div><div style={this.styles.buttonC}>
+                        <div className="dayD">
+                            <button className="durationB active day" style={this.styles.plan} onClick={function (event) {
+                                event.preventDefault();
+                                if (document.getElementsByClassName("active")) {
+                                    let actives = document.getElementsByClassName("durationB");
+                                    for (let i = 0; i < actives.length; i++) {
+                                        actives[i].classList.remove("active");
+                                    }
+                                }
+                                event.target.classList.add("active");
                                 this.setState({
-                                    diet: event.target.value
-                                })}
-                        }.bind(this)}/>
-                            <label htmlFor="ketogenic">Ketogenic</label>
-                            <input type="radio" id="lacto" name="diet" value="lacto-vegetarian" onChange={function(event){
-                                if (event.target.checked) {
-                                    this.setState({
-                                        diet: event.target.value
-                                    })}
-                            }.bind(this)}/>
-                                <label htmlFor="lacto">Lacto-Vegetarian</label><br/>
-                                <input type="radio" id="ovo" name="diet" value="ovo-vegetarian" onChange={function(event){
+                                    duration: "day",
+                                    showForm: false
+                                })
+                            }.bind(this)}></button></div>
+                        <div className="weekD">
+                            <button className="durationB week" style={this.styles.plan} onClick={function (event) {
+                                event.preventDefault();
+                                if (document.getElementsByClassName("active")) {
+                                    let actives = document.getElementsByClassName("durationB");
+                                    for (let i = 0; i < actives.length; i++) {
+                                        actives[i].classList.remove("active");
+                                    }
+                                }
+                                event.target.classList.add("active");
+                                this.setState({
+                                    duration: "week",
+                                    showForm: false
+                                })
+                            }.bind(this)}></button>
+                        </div>
+                    </div>
+                        <div hidden={this.props.hide} style={this.styles.sections}>
+                            <label htmlFor="calories">Target Daily Calories</label>
+                            <input className="inputNumText" type="number" min="1" id="calories" onChange={function (event) {
+                                this.setState({
+                                    calories: event.target.value
+                                })
+                            }.bind(this)} />
+                        </div>
+                    </div>
+                        : ""}
+                    <div style={this.styles.sections} className="diets">
+                        <div className="diet1">
+                            <div>
+                                <input type="radio" id="glutenFree" name="diet" value="gluten free" onChange={function (event) {
                                     if (event.target.checked) {
                                         this.setState({
                                             diet: event.target.value
-                                        })}
-                                }.bind(this)}/>
-                                    <label htmlFor="ovo">Ovo-Vegetarian</label><br/>
-                                    <input type="radio" id="vegan" name="diet" value="vegan" onChange={function(event){
-                                        if (event.target.checked) {
-                                            this.setState({
-                                                diet: event.target.value
-                                            })}
-                                    }.bind(this)}/>
-                                        <label htmlFor="vegan">Vegan</label>
-                                        <input type="radio" id="pescetarian" name="diet" value="pescetarian" onChange={function(event){
-                                            if (event.target.checked) {
-                                                this.setState({
-                                                    diet: event.target.value
-                                                })}
-                                        }.bind(this)}/>
-                                            <label htmlFor="pescetarian">Pescetarian</label><br/>
-                                            <input type="radio" id="paleo" name="diet" value="paleo" onChange={function(event){
-                                                if (event.target.checked) {
-                                                    this.setState({
-                                                        diet: event.target.value
-                                                    })}
-                                            }.bind(this)}/>
-                                                <label htmlFor="paleo">Paleo</label><br/>
-                                                <input type="radio" id="primal" name="diet" value="primal" onChange={function(event){
-                                                    if (event.target.checked) {
-                                                        this.setState({
-                                                            diet: event.target.value
-                                                        })}
-                                                }.bind(this)}/>
-                                                    <label htmlFor="primal">Primal</label>
-                                                    <input type="radio" id="whole" name="diet" value="whole30" onChange={function(event){
-                                                        if (event.target.checked) {
-                                                            this.setState({
-                                                                diet: event.target.value
-                                                            })}
-                                                    }.bind(this)}/>
-                                                        <label htmlFor="whole">Whole30</label><br/>
-                </div>
-                <div style={this.styles.sections}>
-                <label style={this.styles.mainLabel} htmlFor="exclude">Leave Out </label>
-                <input className="inputNumText" type="text" id="exclude" placeholder="Peanuts, Anchovies..." onChange={function(event){
-                    this.setState({
-                        exclude: event.target.value
-                    })
-                }.bind(this)}/>
-                </div>
+                                        })
+                                    }
+                                }.bind(this)} />
+                                <label htmlFor="glutenFree">Gluten Free</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="vegetarian" name="diet" value="vegetarian" onChange={function (event) {
+                                    if (event.target.checked) {
+                                        this.setState({
+                                            diet: event.target.value
+                                        })
+                                    }
+                                }.bind(this)} />
+                                <label htmlFor="vegetarian">Vegetarian</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="ketogenic" name="diet" value="ketogenic" onChange={function (event) {
+                                    if (event.target.checked) {
+                                        this.setState({
+                                            diet: event.target.value
+                                        })
+                                    }
+                                }.bind(this)} />
+                                <label htmlFor="ketogenic">Ketogenic</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="lacto" name="diet" value="lacto-vegetarian" onChange={function (event) {
+                                    if (event.target.checked) {
+                                        this.setState({
+                                            diet: event.target.value
+                                        })
+                                    }
+                                }.bind(this)} />
+                                <label htmlFor="lacto">Lacto-Veg</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="ovo" name="diet" value="ovo-vegetarian" onChange={function (event) {
+                                    if (event.target.checked) {
+                                        this.setState({
+                                            diet: event.target.value
+                                        })
+                                    }
+                                }.bind(this)} />
+                                <label htmlFor="ovo">Ovo-Veg</label>
+                            </div>
 
-                <button style={this.styles.button} type="submit">{this.props.formType}</button>
-            </form>
+                        </div>
+                        <div className="diet2">
+                            <div>
+                                <input type="radio" id="vegan" name="diet" value="vegan" onChange={function (event) {
+                                    if (event.target.checked) {
+                                        this.setState({
+                                            diet: event.target.value
+                                        })
+                                    }
+                                }.bind(this)} />
+                                <label htmlFor="vegan">Vegan</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="pescetarian" name="diet" value="pescetarian" onChange={function (event) {
+                                    if (event.target.checked) {
+                                        this.setState({
+                                            diet: event.target.value
+                                        })
+                                    }
+                                }.bind(this)} />
+                                <label htmlFor="pescetarian">Pescetarian</label>
+                            </div>
+
+                            <div>
+                                <input type="radio" id="paleo" name="diet" value="paleo" onChange={function (event) {
+                                    if (event.target.checked) {
+                                        this.setState({
+                                            diet: event.target.value
+                                        })
+                                    }
+                                }.bind(this)} />
+                                <label htmlFor="paleo">Paleo</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="primal" name="diet" value="primal" onChange={function (event) {
+                                    if (event.target.checked) {
+                                        this.setState({
+                                            diet: event.target.value
+                                        })
+                                    }
+                                }.bind(this)} />
+                                <label htmlFor="primal">Primal</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="whole" name="diet" value="whole30" onChange={function (event) {
+                                    if (event.target.checked) {
+                                        this.setState({
+                                            diet: event.target.value
+                                        })
+                                    }
+                                }.bind(this)} />
+                                <label htmlFor="whole">Whole30</label>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div style={this.styles.sections}>
+                        <label htmlFor="calories">Leave These Out</label>
+                        <input className="inputNumText" type="text" id="exclude" placeholder="Peanuts, Anchovies..." onChange={function (event) {
+                            this.setState({
+                                exclude: event.target.value
+                            })
+                        }.bind(this)} />
+                    </div>
+
+                    <button style={this.styles.button} type="submit">{this.props.formType}</button>
+                </form>
+            </div>
         )
     }
 
 };
 
 export default Form
-
-const styles = {
-
-};

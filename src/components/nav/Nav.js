@@ -34,7 +34,9 @@ const useStyles = makeStyles((theme) => ({
             height: '135px',
         },
         height: '135px',
-        backgroundColor: '#F7D2D2'
+        background: 'no-repeat url("https://images.unsplash.com/photo-1495195129352-aeb325a55b65?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1476&q=80")',
+        backgroundSize: 'cover',
+        zIndex: '2000'
     },
     menuButton: {
         marginRight: theme.spacing(2),
@@ -49,11 +51,11 @@ const useStyles = makeStyles((theme) => ({
             display: 'none'
         },
         display: 'block',
-        width: '100%',
-        height: '300px',
-        paddingTop: '5%',
+        width: '40%',
+        height: '100%',
+        paddingTop: '0',
         marginTop: '135px',
-        backgroundColor: 'white'
+        backgroundColor: '#EF5B5B'
     },
     content: {
         flexGrow: 1,
@@ -152,7 +154,7 @@ const Nav = props =>{
                         <Drawer
                             container={container}
                             variant="temporary"
-                            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+                            anchor="left"
                             open={mobileOpen}
                             onClose={handleDrawerToggle}
                             classes={{

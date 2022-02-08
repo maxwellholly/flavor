@@ -3,14 +3,15 @@ import './Recipe.css'
 
 const Recipe = props => {
     return (
-
         <article style={styles.card}>
             <div style={styles.imageContainer}>
                 <a href={props.val.sourceUrl} target="_blank">
                 <div className="overlay">
                     <h5 className="overlayText">View Recipe</h5>
                 </div>
-                <img src={props.val.image} alt={props.val.title} style={styles.image}/>
+                <img src={props.val.image} onerror={() => {
+                    this.src = "https://hjmportfolio.s3.us-west-2.amazonaws.com/stockimg.jpg"
+                }} alt={props.val.title} style={styles.image}/>
                 </a>
             </div>
             <h4 style={styles.title}>{props.val.title}</h4>
@@ -40,14 +41,13 @@ const styles = {
         position: 'relative',
         width: '400px',
         height: '430px',
-        marginLeft: 'auto',
-        marginRight: 'auto',
         marginBottom: '10px',
         boxShadow: '3px 6px 8px -3px RGBA(52,48,62,.15)',
-        backgroundColor: 'white'
+        backgroundColor: '#F0F7EE'
     },
     image: {
         width: '100%',
+        maxHeight: "220px",
         boxSizing: 'border-box'
     },
     imageContainer: {

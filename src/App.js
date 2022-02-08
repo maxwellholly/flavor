@@ -7,8 +7,6 @@ import Nav from "./components/nav/Nav"
 class App extends Component{
     constructor(props) {
         super(props);
-        this.styles = {
-        }
     }
     //Function to fetch data from API and return recipes as JSON
     getMeals(api, callback) {
@@ -40,14 +38,6 @@ class App extends Component{
                 {/* Conditional that prevents loading before getMeals has returned the data from the API */}
                     <Router className="main-content">
                         <Nav/>
-                        <div className="desNav">
-                            <NavLink className="mainNav" to='/MealPlans'>
-                                <button className="navB">MealPlans</button>
-                            </NavLink>
-                            <NavLink  className="mainNav" to='/RecipeSearch'>
-                                <button className="navB">Recipe Search</button>
-                            </NavLink>
-                        </div>
                         <Routes
                             getMeals = {this.getMeals}
                         />

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {NavLink} from 'react-router-dom';
 import Recipe from '../components/recipe/Recipe'
 
 class Landing extends Component {
@@ -8,6 +9,7 @@ class Landing extends Component {
             pageTitle: {
                 fontSize: '1.5rem',
                 marginBottom: '30px',
+                marginTop: '30px',
                 textAlign: 'center'
             },
             container: {
@@ -18,12 +20,15 @@ class Landing extends Component {
                 position: 'relative'
             },
             recipes: {
-                width: '100%',
+                width: 'auto',
                 height: '100%',
                 display: 'flex',
-                flexFlow: 'row',
                 flexWrap: 'wrap',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
+                marginRight: "auto",
+                marginLeft: "auto",
+                justifyContent: "center",
+                gap: "10px"
             }
         };
         this.state = {
@@ -55,15 +60,24 @@ class Landing extends Component {
                     diet = ''
                 }
                 if(!element.imageType){
-                    element.image = "https://i.imgur.com/FntDt4K.jpg"
+                    element.image = "https://hjmportfolio.s3.us-west-2.amazonaws.com/stockimg.jpg"
                 } else {
                     element.image = "https://spoonacular.com/recipeImages/" + element.id + "-240x150." + element.imageType;
+                    console.log(element.image)
                 }
                 return <Recipe key={i} val={element} diet={diet}/>
             });
         }
         return (
             <div style={this.styles.container}>
+                <div>
+                <NavLink className="mainNav" to='/MealPlans'>
+                <button className="navB plans">Meal Plans</button>
+            </NavLink>
+            <NavLink  className="mainNav" to='/RecipeSearch'>
+                <button className="navB search">Search</button>
+            </NavLink>
+                </div>
                 <h2 style={this.styles.pageTitle}>Featured Recipes</h2>
                 {this.state.loaded ?
                     <div style={this.styles.recipes}>
@@ -71,7 +85,6 @@ class Landing extends Component {
                     </div>
                 :
                     <div>
-                        <h3>We're fetching delicious recipes for you!</h3>
                         <div>
                             <img src="https://media.giphy.com/media/YoKaNSoTHog8Y3550r/giphy.gif"/>
                         </div>

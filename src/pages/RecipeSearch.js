@@ -20,12 +20,15 @@ class RecipeSearch extends Component {
                 position: 'relative'
             },
             recipes: {
-                width: '100%',
+                width: 'auto',
                 height: '100%',
                 display: 'flex',
-                flexFlow: 'row',
                 flexWrap: 'wrap',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
+                marginRight: "auto",
+                marginLeft: "auto",
+                justifyContent: "center",
+                gap: "10px"
             }
         };
         this.state = {
@@ -90,10 +93,7 @@ class RecipeSearch extends Component {
         });
         return (
             <div style={this.styles.container}>
-                <h2 style={this.styles.pageTitle}>Recipe Search</h2>
-                <h3>(all inputs are optional)</h3>
-
-                <Form formType="Search" handleGetMeals={this.handleGetMeals} name={this.state.duration} hide={true} hidden={this.state.showForm}/>
+                <Form className="searchMeals" mealPlans={false} formType="Search" handleGetMeals={this.handleGetMeals} name={this.state.duration} hide={true} hidden={this.state.showForm}/>
                 <button className="formToggle" onClick={this.toggleForm} hidden={!this.state.showForm}>Show Form</button>
                 {this.state.loaded ?
                     <div style={this.styles.recipes}>
@@ -101,7 +101,6 @@ class RecipeSearch extends Component {
                     </div>
                     : this.state.requested ?
                         <div>
-                            <h3>We're fetching delicious recipes for you!</h3>
                             <div>
                                 <img src="https://media.giphy.com/media/YoKaNSoTHog8Y3550r/giphy.gif"/>
                             </div>
